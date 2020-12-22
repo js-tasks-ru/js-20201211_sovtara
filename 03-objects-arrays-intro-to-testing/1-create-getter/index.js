@@ -5,8 +5,9 @@
  */
 export function createGetter(path) {
 
+  const fields = path.split('.');
+
   return function (obj) {
-    const fields = path.split('.');
     let child = obj;
 
     for (let i = 0; i < fields.length; i++) {
