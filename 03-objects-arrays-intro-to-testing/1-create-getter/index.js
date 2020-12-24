@@ -5,4 +5,18 @@
  */
 export function createGetter(path) {
 
+  const fields = path.split('.');
+
+  return function (obj) {
+    let child = obj;
+
+    for (let i = 0; i < fields.length; i++) {
+      child = child[fields[i]];
+      if (typeof child === 'undefined') {
+        return child;
+      }
+    }
+    return (typeof child === 'object') ? undefined : child;
+  };
+
 }
